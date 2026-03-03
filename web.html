@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命延续 · 我们一直与你同在</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#FDFCF8;color:#4A4A4A;line-height:1.8}
+        .slogan{text-align:center;font-size:13px;color:#4A7C59;letter-spacing:3px;padding:20px;background:rgba(74,124,89,0.05)}
+        
+        /* 导航 */
+        nav{background:#fff;padding:16px 24px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,0.05)}
+        .nav-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+        .brand{display:flex;align-items:center;gap:12px}
+        .brand-icon{width:40px;height:40px;background:#4A7C59;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+        .brand h1{font-size:20px;font-weight:600}.brand p{font-size:11px;color:#4A7C59;letter-spacing:2px}
+        
+        /* 首屏 */
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 24px;background:linear-gradient(180deg,#FDFCF8 0%,#F5F5F0 100%);position:relative;overflow:hidden}
+        .hero-bg{position:absolute;font-size:20vw;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(74,124,89,0.1);white-space:nowrap;animation:drift 20s linear infinite}
+        @keyframes drift{0%{transform:translateX(-10%)}100%{transform:translateX(10%)}}
+        .hero-content{position:relative;z-index:1;max-width:800px}
+        .hero h2{font-size:48px;font-weight:300;line-height:1.3;margin:30px 0}
+        .hero h2 strong{font-weight:700;color:#4A7C59;display:block;margin-top:10px}
+        .hero p{font-size:18px;color:#888;max-width:600px;margin:0 auto 40px}
+        
+        /* 产品展示 */
+        .products{display:flex;gap:60px;margin:60px 0;flex-wrap:wrap;justify-content:center}
+        .product{text-align:center}
+        .product-circle{width:200px;height:200px;border-radius:50%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.1);border:4px solid #fff;overflow:hidden}
+        .cat{background:linear-gradient(145deg,#F5E6D3 0%,#E8D4C0 100%)}
+        .dog{background:linear-gradient(145deg,#F0F0F0 0%,#E0E0E0 100%)}
+        .plant{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:60px;height:60px;background:#4A7C59;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;border:3px solid #fff}
+        .face{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:80px}
+        .product h3{margin-top:20px;font-size:18px}.product p{font-size:13px;color:#888}
+        
+        .btn{background:#4A7C59;color:#fff;padding:20px 48px;border-radius:30px;font-size:18px;font-weight:600;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(74,124,89,0.3)}
+        .btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(74,124,89,0.4)}
+        
+        /* 内容区 */
+        section{padding:100px 24px;max-width:1200px;margin:0 auto}
+        .section-title{text-align:center;font-size:36px;font-weight:300;margin-bottom:20px}
+        .section-title strong{font-weight:700;color:#4A7C59}
+        .section-sub{text-align:center;color:#888;margin-bottom:60px}
+        
+        /* 时间线 */
+        .timeline{position:relative;max-width:800px;margin:0 auto}
+          .timeline::before{content:"";position:absolute;left:50%;transform:translateX(-50%);width:2px;height:100%;background:linear-gradient(180deg,transparent,#4A7C59,transparent);opacity:0.3}
+        .item{display:flex;margin-bottom:80px;position:relative}
+        .item:nth-child(even){flex-direction:row-reverse}
+        .content{width:45%;padding:30px;background:#fff;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.08)}
+        .dot{position:absolute;left:50%;transform:translateX(-50%);width:60px;height:60px;background:#fff;border:3px solid #4A7C59;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;z-index:10}
+        .content h3{font-size:20px;margin-bottom:12px}.content p{color:#888;font-size:15px;line-height:1.8}
+        .quote{margin-top:20px;padding:20px;background:#FDFCF8;border-left:4px solid #4A7C59;font-style:italic;color:#666;position:relative}
+        .quote::before{content:""";font-size:60px;color:#4A7C59;opacity:0.2;position:absolute;top:-10px;left:10px}
+        
+        /* 功能卡 */
+        .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:60px}
+        .card{background:#fff;border-radius:24px;padding:40px;box-shadow:0 10px 40px rgba(0,0,0,0.08);transition:all 0.3s}
+        .card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,0.12)}
+        .card-icon{width:70px;height:70px;background:#F5F5F0;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:20px}
+        .card h3{font-size:22px;margin-bottom:12px}.card p{color:#888;line-height:1.8}
+        
+        /* 承诺区 */
+        .promise{background:#4A7C59;color:#fff;padding:100px 24px;text-align:center;position:relative;overflow:hidden}
+        .promise::before{content:"♥";position:absolute;font-size:400px;opacity:0.05;top:50%;left:50%;transform:translate(-50%,-50%)}
+        .promise-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+        .promise h2{font-size:42px;font-weight:300;margin-bottom:30px}.promise h2 strong{font-weight:700;display:block;margin-top:15px;font-size:56px}
+        .promise p{font-size:18px;opacity:0.9;line-height:1.8;margin-bottom:60px}
+        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+        .feature{background:rgba(255,255,255,0.1);padding:30px;border-radius:16px;border:1px solid rgba(255,255,255,0.2)}
+        .feature-icon{font-size:40px;margin-bottom:16px}.feature h4{font-size:16px;margin-bottom:8px}.feature p{font-size:13px;opacity:0.8}
+        
+        /* 套餐 */
+        .pricing{background:#F5F5F0}
+        .pricing-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;margin-top:60px}
+        .price-card{background:#fff;border-radius:24px;padding:40px;text-align:center;border:2px solid transparent;transition:all 0.3s}
+        .price-card:hover{transform:translateY(-10px);box-shadow:0 30px 60px rgba(0,0,0,0.1)}
+        .price-card.featured{border-color:#4A7C59;transform:scale(1.05)}
+        .price-card.featured:hover{transform:scale(1.05) translateY(-10px)}
+        .badge{display:inline-block;background:#4A7C59;color:#fff;padding:6px 20px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:20px}
+        .price-card h3{font-size:24px;margin-bottom:8px}.price-card .sub{color:#888;font-size:14px;margin-bottom:30px}
+        .price{font-size:48px;font-weight:700;color:#4A7C59;margin-bottom:8px}.price span{font-size:16px;color:#888;font-weight:400}
+        .price-note{font-size:13px;color:#888;margin-bottom:30px}
+        .list{list-style:none;text-align:left;margin-bottom:30px}
+        .list li{padding:12px 0;border-bottom:1px solid #f5f5f5;font-size:14px;display:flex;align-items:center;gap:10px}
+        .list li::before{content:"✓";width:24px;height:24px;background:rgba(74,124,89,0.1);color:#4A7C59;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0}
+        .order-btn{width:100%;padding:16px;background:transparent;border:2px solid #4A7C59;color:#4A7C59;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:all 0.3s}
+        .order-btn:hover{background:#4A7C59;color:#fff}
+        .featured .order-btn{background:#4A7C59;color:#fff}
+        
+        /* 页脚 */
+        footer{background:#2C3E2C;color:#fff;padding:80px 24px 40px;text-align:center}
+        footer h2{font-size:32px;font-weight:300;margin-bottom:20px}footer h2 strong{font-weight:700;color:#6B9E7C}
+        footer>p{opacity:0.7;max-width:600px;margin:0 auto 40px;line-height:1.8}
+        .links{display:flex;justify-content:center;gap:40px;margin-bottom:40px;font-size:14px;opacity:0.6}
+        .copy{padding-top:40px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;opacity:0.4}
+        
+        /* 固定条 */
+        .fixed-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);padding:16px;text-align:center;font-size:13px;color:#4A7C59;letter-spacing:3px;border-top:1px solid rgba(0,0,0,0.05);transform:translateY(100%);transition:transform 0.3s;z-index:99}
+        .fixed-bar.show{transform:translateY(0)}
+        
+        @media(max-width:768px){
+            .hero h2{font-size:32px}
+            .products{gap:40px}
+            .item,.item:nth-child(even){flex-direction:column;padding-left:80px}
+            .content{width:100%}
+            .dot{left:30px;transform:none}
+            .timeline::before{left:30px}
+            .price-card.featured{transform:none}
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav>
+        <div class="nav-content">
+            <div class="brand">
+                <div class="brand-icon">🌿</div>
+                <div>
+                    <h1>生命延续</h1>
+                    <p>WE ARE ALWAYS WITH YOU</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首屏 -->
+    <section class="hero">
+        <div class="hero-bg">ALWAYS WITH YOU</div>
+        <div class="hero-content">
+            <div style="margin-bottom:30px"><span style="font-size:13px;color:#4A7C59;letter-spacing:4px;">WE ARE ALWAYS WITH YOU</span></div>
+            <h2>告别不是终点<br><strong>我们一直与你同在</strong></h2>
+            <p>当TA离开，爱并未消失。我们将宠物骨灰通过水化技术转化为营养液，融入可爱造型的纪念容器中。培育一株植物，刻下一段回忆，让陪伴以另一种形式，继续生长。</p>
+            
+            <div class="products">
+                <div class="product">
+                    <div class="product-circle cat">
+                        <div class="plant">🌸</div>
+                        <div class="face">🐱</div>
+                    </div>
+                    <h3>猫咪纪念款</h3>
+                    <p>温柔相伴 · 花开思念</p>
+                </div>
+                <div class="product">
+                    <div class="product-circle dog">
+                        <div class="plant">🌵</div>
+                        <div class="face">🐕</div>
+                    </div>
+                    <h3>狗狗纪念款</h3>
+                    <p>忠诚守护 · 绿意长青</p>
+                </div>
+            </div>
+            
+            <button class="btn">开启陪伴之旅 →</button>
+        </div>
+    </section>
+
+    <div class="slogan">我们一直与你同在 · WE ARE ALWAYS WITH YOU</div>
+
+    <!-- 故事 -->
+    <section>
+        <h2 class="section-title">从告别到新生<br><strong>陪伴从未离开</strong></h2>
+        <p class="section-sub">每一个生命都值得被温柔以待。我们相信，最好的纪念不是封存，而是让爱与记忆继续生长。</p>
+        
+        <div class="timeline">
+            <div class="item">
+                <div class="content">
+                    <h3>🌙 那个夜晚，TA安静地离开</h3>
+                    <p>陪伴我们15年的毛孩子，在睡梦中回到了星球。留下空荡荡的窝，和满满的回忆。</p>
+                    <div class="quote">"我不想只是埋葬它，我想让它继续陪伴我，每天都能看到它，感受到它。"</div>
+                </div>
+                <div class="dot">💔</div>
+            </div>
+            <div class="item">
+                <div class="dot">⚗️</div>
+                <div class="content">
+                    <h3>🌱 水化技术，温柔的转化</h3>
+                    <p>采用碱性水解技术，在90°C温和环境中，将骨灰转化为富含矿物质的营养液。</p>
+                    <div class="quote">"原来科学可以这么温柔。知道它变成了滋养植物的养分，我心里好受多了。"</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="content">
+                    <h3>🌿 种下第一株植物</h3>
+                    <p>将营养液倒入纪念容器，在顶部种下一株薄荷。每天浇水时，看着容器上TA的照片，感觉TA还在身边。</p>
+                    <div class="quote">"薄荷长出新叶的时候，我哭了。那是它用生命在告诉我：妈妈，我还在，我一直与你同在。"</div>
+                </div>
+                <div class="dot">🌱</div>
+            </div>
+            <div class="item">
+                <div class="dot">♥</div>
+                <div class="content">
+                    <h3>🌸 花开时节，回忆芬芳</h3>
+                    <p>三个月后，薄荷开花了。我摘了一片叶子泡茶，那是TA留给我的最后一份礼物。</p>
+                    <div class="quote">"现在每天看到它，我都会微笑。它不是离开了，它是换了一种方式，永远留在了我的生命里。"</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="slogan">我们一直与你同在 · WE ARE ALWAYS WITH YOU</div>
+
+    <!-- 功能 -->
+    <section style="background:#fff">
+        <h2 class="section-title">每一处设计，都是<strong>陪伴</strong>的承诺</h2>
+        <p class="section-sub">我们花了三年时间，打磨每一个细节。因为这不是一个花盆，这是一个承诺。</p>
+        
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">⚗️</div>
+                <h3>水化营养系统</h3>
+                <p>碱性水解技术，将骨灰转化为富含氮、磷、钾、钙的液体营养。零污染、低能耗，让回归更自然。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌱</div>
+                <h3>顶部生命花园</h3>
+                <p>容器顶部设计种植空间，适配多肉、薄荷、小花卉。每一次浇水，都是与TA的对话。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3>永恒铭牌</h3>
+                <p>黄铜材质，激光刻字宠物昵称与生卒年月。磁吸设计，可随时取下抚摸。岁月包浆，见证陪伴。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🖼️</div>
+                <h3>记忆相框</h3>
+                <p>磁吸式照片框，防UV亚克力保护，可放置3寸照片。永远定格在视线可及之处。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 承诺 -->
+    <section class="promise">
+        <div class="promise-content">
+            <div style="margin-bottom:40px"><span style="background:rgba(255,255,255,0.2);padding:8px 20px;border-radius:20px;font-size:13px;letter-spacing:3px;">ALWAYS WITH YOU</span></div>
+            <h2>这不仅是一个产品<br><strong>这是我们的承诺</strong></h2>
+            <p>从您选择我们的那一刻起，我们就与您建立了连接。不仅是售前的咨询，不仅是售中的服务，更是售后的长期陪伴。植物养护遇到问题？我们随时在线。想要补充营养液？我们持续供应。因为<strong>我们一直与你同在</strong>，这不是结束，这是开始。</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🌿</div>
+                    <h4>终身养护指导</h4>
+                    <p>专属园艺师1对1咨询，随时解答植物养护问题</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📦</div>
+                    <h4>营养液持续供应</h4>
+                    <p>水化营养液可长期订购，让陪伴延续更久</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h4>植物更换服务</h4>
+                    <p>若植物意外枯萎，免费补发新苗，承诺不中断</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <h4>情感支持热线</h4>
+                    <p>宠物丧失辅导师，7×24小时倾听与陪伴</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="slogan">我们一直与你同在 · WE ARE ALWAYS WITH YOU</div>
+
+    <!-- 套餐 -->
+    <section class="pricing">
+        <h2 class="section-title">选择适合您的<strong>陪伴</strong>方式</h2>
+        <p class="section-sub">无论选择哪一款，我们都承诺：终身养护指导，营养液持续供应，<strong>我们一直与你同在</strong></p>
+        
+        <div class="pricing-cards">
+            <div class="price-card">
+                <h3>初心版</h3>
+                <p class="sub">适合初次尝试，简约温馨</p>
+                <div class="price">¥1,280<span>/套</span></div>
+                <p class="price-note">开启陪伴的第一步</p>
+                <ul class="list">
+                    <li>猫咪/狗狗造型容器</li>
+                    <li>水化处理服务（30g骨灰）</li>
+                    <li>营养液200ml（3个月量）</li>
+                    <li>黄铜铭牌刻字</li>
+                    <li>植物种子包（3选1）</li>
+                </ul>
+                <button class="order-btn">选择初心版</button>
+            </div>
+            
+            <div class="price-card featured">
+                <span class="badge">最受欢迎</span>
+                <h3>陪伴版</h3>
+                <p class="sub">完整体验，长久陪伴</p>
+                <div class="price">¥1,980<span>/套</span></div>
+                <p class="price-note">让陪伴更完整、更长久</p>
+                <ul class="list">
+                    <li>猫咪/狗狗造型容器</li>
+                    <li>水化处理服务（50g骨灰）</li>
+                    <li>营养液400ml（6个月量）</li>
+                    <li>黄铜铭牌 + 磁吸照片框</li>
+                    <li>成熟植株（已生根，5选1）</li>
+                    <li>1年养护咨询服务</li>
+                </ul>
+                <button class="order-btn">选择陪伴版</button>
+            </div>
+            
+            <div class="price-card">
+                <h3>永恒版</h3>
+                <p class="sub">双宠家庭，双倍陪伴</p>
+                <div class="price">¥3,580<span>/套</span></div>
+                <p class="price-note">爱不分大小，陪伴永远</p>
+                <ul class="list">
+                    <li>猫咪+狗狗容器组合</li>
+                    <li>水化处理服务（100g骨灰）</li>
+                    <li>营养液800ml（12个月量）</li>
+                    <li>纯银升级铭牌（2个）</li>
+                    <li>终身养护咨询服务</li>
+                    <li>定制手绘宠物肖像</li>
+                </ul>
+                <button class="order-btn">选择永恒版</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <h2><strong>我们一直与你同在</strong><br>We Are Always With You</h2>
+        <p>生命延续，不是结束，而是另一种形式的开始。让爱与记忆，在绿意中继续生长。从选择我们的那一刻起，你就拥有了一个终身的陪伴者。</p>
+        <div class="links">
+            <span>关于我们</span>
+            <span>水化技术</span>
+            <span>养护指南</span>
+            <span>联系我们</span>
+        </div>
+        <div class="copy">
+            <p>© 2024 生命延续 · We Are Always With You</p>
+            <p>Eco-Friendly Pet Memorial · 让爱与记忆生生不息</p>
+        </div>
+    </footer>
+
+    <!-- 固定slogan -->
+    <div class="fixed-bar" id="fixedBar">我们一直与你同在 · WE ARE ALWAYS WITH YOU</div>
+
+    <script>
+        window.addEventListener('scroll',()=>{
+            document.getElementById('fixedBar').classList.toggle('show',window.scrollY>500)
+        })
+    </script>
+</body>
+</html>
